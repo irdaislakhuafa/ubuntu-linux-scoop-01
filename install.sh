@@ -19,6 +19,6 @@ git clone https://github.com/vinceliuice/WhiteSur-gtk-theme.git
 cd "WhiteSur-gtk-theme" 
 chmod +x * -R
 ./install.sh -t red
-# cd ..
-# rm -rfv WhiteSur-gtk-theme
+cd ..
+rm -rfv WhiteSur-gtk-theme
 cd "$workDir"
