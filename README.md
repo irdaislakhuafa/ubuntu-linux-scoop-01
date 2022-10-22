@@ -9,3 +9,19 @@
     - [Dash To Panel](https://extensions.gnome.org/extension/1160/dash-to-panel/)
     - [GS Connect](https://extensions.gnome.org/extension/1319/gsconnect/)
     - [Coverflow Alt+Tab](https://extensions.gnome.org/extension/97/coverflow-alt-tab/)
+# Installlation
+- First installation
+```bash
+chmod +x install.sh
+./install.sh first
+```
+
+- After logout
+```bash
+./install.sh after
+```
+
+- Install and configure conky
+```bash
+./install.sh conky
+```
