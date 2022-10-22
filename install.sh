@@ -67,6 +67,8 @@ if [ "$opt" = "first" ]; then
     # mv -v ~/.local/share/icons/Vimix-cursors ~/.icons/
     # mv -v ~/.local/share/icons/Vimix-white-cursors ~/.icons/
 
+    # printlnGreen
+
     printlnGreen "$separator install gnome extensions"
     if ! [ -d ~/.local/share/gnome-shell/extensions ]; then
         mkdir -pv ~/.local/share/gnome-shell/extensions
@@ -88,8 +90,23 @@ elif [ "$opt" = "after" ]; then
     $access apt install dconf-cli -y
     cd "./assets/all_extensions_config/"
     dconf load /org/gnome/shell/extensions/< all_extension_settings.conf
-
+    printlnGreen "now apply gtk-theme, icon, cursors and fonts using gnome-tweaks";
+    cd "$workDir"
+    exit 0
+elif [ "$opt" = "conky" ]; then
+    printlnGreen "$separator install and configure conky"
+    $access apt install conky-all curl jq moc -y
+    if ! [ -d ~/.config/conky ]; then
+        mkdir -pv ~/.config/conky
+    fi
+    cp -rv "./assets/conky_config/Graffias" ~/.config/conky/
+    printlnGreen "add conky to auto-start"
+    if ! [ -d ~/.config/autostart/ ]; then
+        mkdir -pv ~/.config/autostart/
+    fi
+    cp -rv "./assets/conky_config/start_conky.desktop" ~/.config/autostart/
+    printlnGreen "now you can logout and login again to start conky"
 else 
-    printlnRed "please select \"first\" or \"after\" mode";
+    printlnRed "please select \"first\", \"after\", \"conky\" mode";
     exit 1
 fi
