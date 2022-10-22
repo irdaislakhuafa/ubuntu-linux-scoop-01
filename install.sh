@@ -84,6 +84,11 @@ elif [ "$opt" = "after" ]; then
     gnome-extensions enable mediacontrols@cliffniff.github.com
     gnome-extensions enable user-theme@gnome-shell-extensions.gcampax.github.com
 
+    printlnGreen "$separator import extensions configs"
+    $access apt install dconf-cli -y
+    cd "./assets/all_extensions_config/"
+    dconf load /org/gnome/shell/extensions/< all_extension_settings.conf
+
 else 
     printlnRed "please select \"first\" or \"after\" mode";
     exit 1
