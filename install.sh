@@ -14,11 +14,27 @@ separator="=>"
 
 printlnGreen "$separator install WhiteSur GTK Theme"
 $access apt install git -y;
+if ! [ -d "$workDir/assets/themes" ]; then
+    mkdir -v "$workDir/assets/themes"
+fi
 cd "$workDir/assets/themes"
 git clone https://github.com/vinceliuice/WhiteSur-gtk-theme.git
 cd "WhiteSur-gtk-theme" 
 chmod +x * -R
 ./install.sh -t red
 cd ..
-rm -rfv WhiteSur-gtk-theme
+rm -rf "WhiteSur-gtk-theme"
+cd "$workDir"
+
+printlnGreen "$separator download and install reversal icon"
+if ! [ -d "$workDir/assets/icons" ]; then
+    mkdir -v "$workDir/assets/icons"
+fi
+cd "$workDir/assets/icons"
+git clone https://github.com/yeyushengfan258/Reversal-icon-theme.git
+cd "Reversal-icon-theme"
+chmod +x * -R
+./install.sh -red
+cd ..
+rm -rf "Reversal-icon-theme"
 cd "$workDir"
