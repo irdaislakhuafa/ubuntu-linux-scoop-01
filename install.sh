@@ -39,8 +39,28 @@ separator="=>"
 # rm -rf "Reversal-icon-theme"
 # cd "$workDir"
 
-printlnGreen "$separator installing fonts"
-if ! [ -d ~/.local/share/ ]; then
-    mkdir -pv ~/.local/share/
+# printlnGreen "$separator installing fonts"
+# if ! [ -d ~/.local/share/ ]; then
+#     mkdir -pv ~/.local/share/
+# fi
+# cp -rv "$workDir/assets/fonts/" ~/.local/share/
+
+printlnGreen "$separator download and install vimix cursors theme"
+if ! [ -d "$workDir/assets/cursors" ]; then
+    mkdir -pv "$workDir/assets/cursors"
 fi
-cp -rv "$workDir/assets/fonts/" ~/.local/share/
+if ! [ -d ~/.local/share/icons ]; then
+    mkdir -pv ~/.local/share/icons
+fi
+cd "$workDir/assets/cursors"
+git clone https://github.com/vinceliuice/Vimix-cursors.git
+cd "Vimix-cursors"
+chmod +x * -R
+./install.sh
+cd ..
+rm -rf "Vimix-cursors"
+if ! [ -d ~/.icons ]; then
+    mkdir -pv ~/.icons
+fi
+mv -v ~/.local/share/icons/Vimix-cursors ~/.icons/
+mv -v ~/.local/share/icons/Vimix-white-cursors ~/.icons/
